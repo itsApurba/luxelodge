@@ -35,23 +35,25 @@ const LoginModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-
-    signIn("credentials", {
-      ...data,
+    console.log(data);
+    signIn("email", {
+      email: data.email,
+      password: data.password,
       redirect: false,
-    }).then((callback) => {
-      setIsLoading(false);
-
-      if (callback?.ok) {
-        toast.success("Logged in");
-        router.refresh();
-        loginModal.onClose();
-      }
-
-      if (callback?.error) {
-        toast.error(callback.error);
-      }
     });
+    // .then((callback) => {
+    //   setIsLoading(false);
+
+    //   if (callback?.ok) {
+    //     toast.success("Logged in");
+    //     router.refresh();
+    //     loginModal.onClose();
+    //   }
+
+    //   if (callback?.error) {
+    //     toast.error(callback.error);
+    //   }
+    // });
   };
 
   const onToggle = useCallback(() => {
